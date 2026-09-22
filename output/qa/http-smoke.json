@@ -1,0 +1,135 @@
+{
+  "startedAt": "2026-09-22T11:38:02.201Z",
+  "finishedAt": "2026-09-22T11:39:52.198Z",
+  "target": "http://localhost:3000",
+  "mode": "focused-followup",
+  "previousStartedAt": "2026-09-22T11:33:33.556Z",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "write permissions and CSRF are enforced by the server",
+      "status": "passed",
+      "durationMs": 3032
+    },
+    {
+      "name": "domain CRUD persists relationships; manual status does not fabricate telemetry",
+      "status": "passed",
+      "durationMs": 3018
+    },
+    {
+      "name": "optimistic versions and inclusive local capacity reject conflicting writes",
+      "status": "passed",
+      "durationMs": 11278
+    },
+    {
+      "name": "invalid import rolls back every row in its batch",
+      "status": "passed",
+      "durationMs": 3043
+    },
+    {
+      "name": "upload rejects disguised files and oversized requests",
+      "status": "passed",
+      "durationMs": 1732
+    },
+    {
+      "name": "evidence verifies storage hash and screen/campaign relationships",
+      "status": "passed",
+      "durationMs": 8420
+    },
+    {
+      "name": "telemetry authenticates, deduplicates, rejects collisions and keeps chronological signal",
+      "status": "passed",
+      "durationMs": 21382
+    },
+    {
+      "name": "server is ready and internal reads reject missing sessions",
+      "status": "passed",
+      "durationMs": 181
+    },
+    {
+      "name": "login rejects CSRF and wrong passwords and issues a private session",
+      "status": "passed",
+      "durationMs": 10020
+    },
+    {
+      "name": "admin creates all roles through HTTP; self-demotion is blocked",
+      "status": "passed",
+      "durationMs": 21071
+    },
+    {
+      "name": "create operators through its authorized role",
+      "status": "passed",
+      "durationMs": 2678
+    },
+    {
+      "name": "create clients through its authorized role",
+      "status": "passed",
+      "durationMs": 2526
+    },
+    {
+      "name": "create screens through its authorized role",
+      "status": "passed",
+      "durationMs": 2645
+    },
+    {
+      "name": "create campaigns through its authorized role",
+      "status": "passed",
+      "durationMs": 3854
+    },
+    {
+      "name": "create quotes through its authorized role",
+      "status": "passed",
+      "durationMs": 4415
+    },
+    {
+      "name": "create incidents through its authorized role",
+      "status": "passed",
+      "durationMs": 2636
+    },
+    {
+      "name": "valid image is private and its stored bytes match SHA-256",
+      "status": "passed",
+      "durationMs": 4701
+    },
+    {
+      "name": "create evidence through its authorized role",
+      "status": "passed",
+      "durationMs": 4079
+    },
+    {
+      "name": "shared link uses the browser origin",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "name": "shared report excludes sensitive fields and serves only verified campaign files",
+      "status": "passed",
+      "durationMs": 10190
+    },
+    {
+      "name": "read-only assistant uses the real configured AI provider",
+      "status": "passed",
+      "durationMs": 2302
+    },
+    {
+      "name": "exports include records and metadata; restore refuses a populated workspace",
+      "status": "passed",
+      "durationMs": 3306
+    },
+    {
+      "name": "share revocation removes report and image access immediately",
+      "status": "passed",
+      "durationMs": 3259
+    },
+    {
+      "name": "role change revokes an existing session and logout invalidates its server token",
+      "status": "passed",
+      "durationMs": 8533
+    }
+  ],
+  "cleanup": {
+    "completed": true,
+    "filesRemoved": 1,
+    "remainingRows": 0
+  }
+}

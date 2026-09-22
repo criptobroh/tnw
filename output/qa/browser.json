@@ -1,0 +1,15 @@
+{
+  "checkedOn": "2026-09-22",
+  "method": "Manual browser verification through Codex browser controls",
+  "local": {
+    "desktop": "passed",
+    "mobile390x844": "passed",
+    "checks": ["landing and dashboard", "map filtering", "demo create and persistence after reload", "mobile navigation visibility and accessible labels", "viewer login and read-only controls", "logout returns to public landing"]
+  },
+  "production": {
+    "url": "https://tnw.vercel.app",
+    "checks": ["public landing", "interactive demo", "map navigation and rendered tiles", "synthetic evidence clearly labeled"],
+    "consoleWarningsOrErrors": 0
+  },
+  "pdf": {"pages": 19, "bookmarks": 18, "allPagesRenderedAndReviewed": true}
+}

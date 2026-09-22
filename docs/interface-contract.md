@@ -1,0 +1,25 @@
+# TNW implementation contract
+
+- Next 16 App Router, Spanish Argentina UI. `src/lib/types.ts` is canonical entity model.
+- `/` public brand landing, `/demo` local interactive demo with unmistakable demo badge, `/login` credentials login, `/app` authenticated actual workspace.
+- Client workspace receives `initial: Bootstrap`, `demo?: boolean`; UI implementation entry export default `Workspace` from `src/components/workspace.tsx`.
+- Production read `GET /api/workspace` returns Bootstrap. Authenticated workspace and API responses are private/no-store.
+- `POST /api/records/{kind}` accepts entity fields without Base; returns `{record}` 201.
+- `PATCH /api/records/{kind}/{id}` accepts `{...fields, version}`; returns `{record}`. Version conflict 409.
+- `DELETE /api/records/{kind}/{id}` accepts JSON `{version}`; returns `{ok:true}`; refuses referenced rows.
+- Errors use `{error: string}` with the applicable status, including 400,401,403,404,409,413,429,503.
+- `POST /api/auth/login` `{email,password}` => `{user}` + cookie; `POST /api/auth/logout` => `{ok:true}`.
+- `POST /api/upload` multipart form `file` JPEG/PNG/WebP max 4MB => `{url,sha256}`. Evidence images served only to authenticated internal users via `/api/files?...`, or through an unexpired campaign share token via `/api/report-file/{token}?id=...`. Uploads are normalized to WebP without EXIF; SHA-256 refers to stored bytes.
+- `POST /api/assistant` `{message,history?:[{role,content}]}` => `{answer,mode:'ai'|'local'}`. Read-only assistant. Each answer identifies AI or local mode in the UI. Demo computes local answers without calling the production API. The current handler accepts history for compatibility but answers from the current question and workspace context.
+- `GET /api/export?kind=screens` CSV (also available for each entity kind) and `GET /api/export` business backup JSON, format `tnw-backup-v1`. Authenticated only. The JSON includes records, upload metadata and recent telemetry deduplication keys, not users, sessions, audit, share tokens, secrets or image bytes.
+- `POST /api/import` `{kind,records:[...]}` atomic create batch max 200, returns `{count}`; explicit CSV preview in UI. Creates new IDs, never upserts or restores exported IDs. The visual-evidence UI uses the upload form instead of CSV import.
+- `GET /api/users` => `{users}` admin; `POST /api/users` `{name,email,role,password}`; `PATCH /api/users/{id}` `{role?,password?,name?,active?}` admin. Password length 12–128. Password, role or active-state changes revoke sessions as applicable. No invitation email; self-demotion/deactivation and removal of the last active admin are blocked.
+- `POST /api/telemetry` Bearer integration token payload `{eventId,screenId,observedAt,status,plays?,campaignId?}` idempotent Bearer-authenticated player ingestion, no fabricated delivery.
+- `POST /api/restore` accepts a `tnw-backup-v1` JSON backup; admin only, empty workspace only, maximum 1,000 records, 50 images and 4 MB. Preview counts and explicit confirmation appear in Settings. Preserves IDs and relations; validates image bytes against the existing private store.
+- `POST /api/share` `{campaignId,days}` returns `{url,expiresAt}`; admin/sales. UI uses 7 days (API allows 1–30). `DELETE /api/share` `{campaignId}` revokes every link for that campaign. `/reports/{token}` exposes that campaign and verified evidence only, excluding contacts, costs and internal notes. Creating a link does not send a message.
+- Backend validates everything. Roles admin all, operations screens/evidence/incidents/operators, sales clients/operators/campaigns/quotes/opportunities, viewer read only.
+- Status `online` derives from lastSeen freshness (15 minutes); no telemetry means unknown, independent of manually chosen status. Raw source date displayed.
+- Avoid invented metrics. Forecast from spot/loop/operating hours explicitly estimates. Proof records not equivalent to measured audiences.
+- Pricing: adjusted base = base*(1+adjustment/100); subtotal=adjusted base+service; agency commission=adjusted base*agency/100; tax=subtotal*tax/100; total=subtotal+tax; net before costs=subtotal-commission. Money rounds to two decimals via the shared domain helper. Adjustment and commission are editable parameters; no automatic increase or universal rate.
+- Real workspace initially empty; realistic demo entities exclusively in demo.ts and browser local state, never seeded into real DB.
+- Root owns src/lib (except demo.ts), APIs, infra. UI agent owns components and app pages/layout/globals.css. No overlap.

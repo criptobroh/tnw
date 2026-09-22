@@ -1,0 +1,8 @@
+tmp
+tests
+output
+docs/product-brief.md
+docs/reuse-audit.md
+.agents
+.claude
+scripts/http-smoke.ts

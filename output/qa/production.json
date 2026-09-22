@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-09-22T11:38:41.958Z",
+  "url": "https://tnw.vercel.app",
+  "status": "passed",
+  "checks": [
+    "unauthenticated workspace denied",
+    "admin login and secure cookie",
+    "authenticated PostgreSQL workspace",
+    "production write persisted",
+    "production read after write",
+    "production fixture removed",
+    "live OpenAI assistant",
+    "published manual byte match",
+    "logout invalidates session"
+  ]
+}

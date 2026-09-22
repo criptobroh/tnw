@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-09-22T11:40:47.064Z",
+  "url": "https://tnw.vercel.app",
+  "status": "passed",
+  "checks": [
+    "empty workspace precondition",
+    "export of three related records",
+    "CSV preserves numeric coordinates",
+    "invalid reference rollback leaves no partial restore",
+    "restore preserves every ID, version, date, payload and relationship",
+    "temporary records removed; workspace empty"
+  ]
+}
