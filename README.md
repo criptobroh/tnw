@@ -2,6 +2,8 @@
 
 Plataforma en español para gestionar una red de pantallas LED: inventario propio y asociado, mapa, operadores, clientes, campañas, cotizaciones, evidencias privadas, incidencias y expansión.
 
+[Abrir TNW](https://tnw.lol) · [Demo interactiva](https://tnw.lol/demo) · [Manual](https://tnw.lol/manual-tnw.pdf)
+
 ## Aplicación
 
 - `/`: presentación del producto.

@@ -2,28 +2,36 @@
 
 ## Recursos
 
-- Producción pública: https://tnw.vercel.app
-- Dominio previsto: https://tnw.lol
+- Producción canónica: [tnw.lol](https://tnw.lol).
+- Alias alternativo: [tnw.vercel.app](https://tnw.vercel.app).
+- `www.tnw.lol` redirige con HTTP 308 a `tnw.lol`.
 - Vercel: proyecto `tnw`, equipo `nocoda`, región de funciones `gru1`.
-- GitHub: https://github.com/criptobroh/tnw, rama `main`.
+- GitHub: [criptobroh/tnw](https://github.com/criptobroh/tnw), rama `main`.
 - PostgreSQL: recurso Neon exclusivo `tnw-database`.
 - Evidencias: almacén Vercel Blob privado exclusivo `tnw-evidence`.
-- Manual: `/manual-tnw.pdf`, 19 páginas.
+- Manual: [manual-tnw.pdf](https://tnw.lol/manual-tnw.pdf), 19 páginas.
 
 El acceso operativo requiere una cuenta TNW; la portada y la demostración son públicas. Los enlaces de despliegue individuales pueden requerir autenticación Vercel; utilizar el alias público indicado arriba.
 
-## DNS pendiente
+## Dominio y DNS configurados
 
-Verificación del 22 de septiembre de 2026: `tnw.lol` está asociado al proyecto, pero el DNS continúa con la IP de estacionamiento `162.255.119.23` y servidores `dns1.registrar-servers.com` / `dns2.registrar-servers.com`.
+Verificación del 22 de septiembre de 2026: `https://tnw.lol` responde por HTTPS y permite iniciar sesión, consultar el espacio autenticado, descargar el PDF y cerrar sesión. `https://www.tnw.lol` redirige con HTTP 308 al dominio canónico. Las seis comprobaciones quedaron registradas en `output/qa/domain.json`.
 
-En Namecheap → Domain List → `tnw.lol` → Advanced DNS:
+Registros configurados en Namecheap para `tnw.lol`:
 
-1. Quitar el registro de estacionamiento o redirección del host `@`.
-2. Configurar un registro **A**, host **@**, valor **76.76.21.21**, TTL automático. Es el registro indicado por `vercel domains inspect` para este dominio.
-3. Conservar los registros de correo, TXT y subdominios ajenos a este cambio.
-4. Revisar el estado en https://vercel.com/nocoda/tnw/settings/domains y esperar verificación DNS/certificado.
+| Tipo | Host | Valor |
+| --- | --- | --- |
+| A | `@` | `216.150.1.1` |
+| A | `@` | `216.150.16.1` |
+| CNAME | `www` | `1986dc47e22fa2c2.vercel-dns-016.com.` |
 
-No es necesario cambiar los nameservers. El acceso autenticado a Namecheap no estaba disponible durante la entrega; no se modificó el DNS externo ni se afirmó que el dominio estuviera operativo. Mientras tanto, la plataforma funciona en `tnw.vercel.app`.
+La redirección de `www` al dominio principal está configurada en Vercel. El estado del dominio se consulta en [Vercel → TNW → Domains](https://vercel.com/nocoda/tnw/settings/domains). El alias `tnw.vercel.app` permanece disponible como alternativa.
+
+## Publicación y conexión con GitHub
+
+El despliegue de producción se realizó mediante Vercel CLI. La publicación automática desde GitHub **no está habilitada**: el intento de vincular el repositorio por la API de Vercel devolvió HTTP 400, indicando que primero se debe instalar o autorizar la [GitHub App de Vercel](https://github.com/apps/vercel). Después corresponde vincular `criptobroh/tnw` al proyecto y verificar un despliegue automático.
+
+GitHub Actions sí ejecutó correctamente el CI de la revisión `46e5408` de `main`. Ese resultado verifica los controles del repositorio; no implica que Vercel esté conectado a GitHub ni que cada push publique automáticamente. Hasta completar esa conexión, las actualizaciones se despliegan explícitamente mediante CLI.
 
 ## Mantenimiento
 

@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-09-22T11:49:46.764Z",
+  "url": "https://tnw.lol",
+  "status": "passed",
+  "checks": [
+    "HTTPS health200",
+    "canonical origin login",
+    "canonical authenticated workspace",
+    "canonical PDF byte match",
+    "canonical logout",
+    "www HTTPS redirects308 to apex"
+  ]
+}
